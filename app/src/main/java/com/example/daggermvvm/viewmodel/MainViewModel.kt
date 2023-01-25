@@ -6,9 +6,12 @@ import androidx.lifecycle.viewModelScope
 import com.example.daggermvvm.models.Product
 import com.example.daggermvvm.repository.ProductRepository
 import com.example.daggermvvm.utils.NetworkResponse
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MainViewModel(private val repository: ProductRepository): ViewModel() {
+@HiltViewModel
+class MainViewModel @Inject constructor (private val repository: ProductRepository): ViewModel() {
 
     val products: LiveData<NetworkResponse<List<Product>>>
     get() {

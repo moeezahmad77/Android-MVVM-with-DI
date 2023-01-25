@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
+    id "com.google.dagger.hilt.android"
 }
 
 android {
@@ -41,7 +42,7 @@ dependencies {
     def lifecycle_version = "2.5.1"
     def retrofit_version = "2.9.0"
     def gson_version = "2.10.1"
-    def dagger_version = "2.44.2"
+    def hilt_version = "2.44"
     def room_version = "2.4.3"
 
 
@@ -65,9 +66,9 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
     implementation "com.google.code.gson:gson:$gson_version"
 
-    // dagger library
-    implementation "com.google.dagger:dagger:${dagger_version}"
-    kapt "com.google.dagger:dagger-compiler:${dagger_version}"
+    // hilt library
+    implementation("com.google.dagger:hilt-android:$hilt_version")
+    kapt("com.google.dagger:hilt-android-compiler:$hilt_version")
 
     // Room database
     implementation("androidx.room:room-runtime:$room_version")

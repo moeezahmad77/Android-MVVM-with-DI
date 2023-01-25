@@ -9,19 +9,12 @@ import com.example.daggermvvm.databinding.ActivityMainBinding
 import com.example.daggermvvm.repository.ProductRepository
 import com.example.daggermvvm.utils.NetworkResponse
 import com.example.daggermvvm.viewmodel.MainViewModel
-import com.example.daggermvvm.viewmodelfactory.MainViewModelFactory
-import javax.inject.Inject
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var mainViewModel: MainViewModel
-
-    @Inject
-    lateinit var mainViewModelFactory: MainViewModelFactory
-
-    @Inject
-    lateinit var prodRepo: ProductRepository
-
     lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,9 +22,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        (application as MainApplication).appComponent.inject(this)
-
-        mainViewModel = ViewModelProvider(this, mainViewModelFactory).get(MainViewModel::class.java)
+        mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
         subscriber()
     }
